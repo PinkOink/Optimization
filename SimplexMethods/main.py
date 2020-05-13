@@ -21,13 +21,13 @@ N1 = np.array([1, 2, 3, 4])
 
 
 task = t.SuperGeneralTask(A_meq, A_eq, A_leq, b_meq, b_eq, b_leq, c, N1)
-ans = task.solve_vectors()
+ans_reg = task.solve_vectors()
 print("Vectors regular solve")
-print(ans)
-print(c.dot(ans))
-print(A_meq.dot(ans), b_meq)
-print(A_leq.dot(ans), b_leq)
-print(A_eq.dot(ans), b_eq)
+print(ans_reg)
+print(c.dot(ans_reg))
+print(A_meq.dot(ans_reg), b_meq)
+print(A_leq.dot(ans_reg), b_leq)
+print(A_eq.dot(ans_reg), b_eq)
 print()
 
 
@@ -41,7 +41,7 @@ print(dual.A_eq.dot(ans), dual.b_eq)
 print()
 
 
-ans = task.solve_vectors()
+ans = task.solve_table()
 print("Table regular solve")
 print(ans)
 print(c.dot(ans))

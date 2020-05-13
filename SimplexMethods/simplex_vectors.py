@@ -100,16 +100,16 @@ class SimplexVectors:
             uk_buf = u._vector_by_index(uk, self.Nk)
             jk_pos, = np.where(self.Nk == jk)
             I = np.identity(N_buf.size)
-            if jk_pos < ik_pos:
-                I = np.insert(I, ik_pos + 1, 0, axis=1)
-                I[:,ik_pos + 1] = np.transpose([-(uk_buf / uk[ik])])
-                F = np.delete(I, jk_pos, axis=1)
-                Bk = F.dot(self.Bk)
-            else:
-                I = np.delete(I, jk_pos, axis=1)
-                F = np.insert(I, ik_pos, 0, axis=1)
-                F[:, ik_pos] = np.transpose([-(uk_buf / uk[ik])])
-                Bk = F.dot(self.Bk)
+            #if jk_pos < ik_pos:
+            #    I = np.insert(I, ik_pos + 1, 0, axis=1)
+            #    I[:,ik_pos + 1] = np.transpose([-(uk_buf / uk[ik])])
+            #    F = np.delete(I, jk_pos, axis=1)
+            #    Bk = F.dot(self.Bk)
+            #else:
+            I = np.delete(I, jk_pos, axis=1)
+            F = np.insert(I, ik_pos, 0, axis=1)
+            F[:, ik_pos] = np.transpose([-(uk_buf / uk[ik])])
+            Bk = F.dot(self.Bk)
             self.Bk = Bk
 
         def _step(self):

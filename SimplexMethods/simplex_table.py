@@ -32,11 +32,11 @@ class SimplexTable:
 
         for j in self.M:
             get = False
-            for i in self.N:
-                if (I_buf[:,j] == coefs[:,i]).all():
-                    basis[j] = i
-                    get = True
-                    break
+            #for i in self.N:
+            #    if (I_buf[:,j] == coefs[:,i]).all():
+            #        basis[j] = i
+            #        get = True
+            #        break
             if get == False:
                 new_col = np.reshape(I_buf[:,j], (self.M.size, 1))
                 coefs = np.concatenate((coefs, new_col), axis=1)
@@ -96,10 +96,10 @@ class SimplexTable:
             coefs[:,to_basis] = 0
             coefs[out_basis,to_basis] = 1
 
-            for i in self.M:
-                if plan_col[i] < 0:
-                    plan_col[i] = -plan_col[i]
-                    coefs[i,] = -coefs[i,]
+            #for i in self.M:
+            #    if plan_col[i] < 0:
+            #        plan_col[i] = -plan_col[i]
+            #        coefs[i,] = -coefs[i,]
 
         coefs = coefs[:,self.N]
         func_row = func_row[self.N]
@@ -152,15 +152,14 @@ class SimplexTable:
             coefs[:,to_basis] = 0
             coefs[out_basis,to_basis] = 1
 
-            for i in self.M:
-                if plan_col[i] < 0:
-                    plan_col[i] = -plan_col[i]
-                    coefs[i,] = -coefs[i,]
+            #for i in self.M:
+            #    if plan_col[i] < 0:
+            #        plan_col[i] = -plan_col[i]
+            #        coefs[i,] = -coefs[i,]
 
         ans = np.zeros(self.N.size)
         for i in self.M:
             ans[int(basis[i])] = plan_col[i]
-
         self.x = ans
 
 
