@@ -86,7 +86,8 @@ class SimplexVectors:
                 for j in Lk:
                     ind_buf = np.sort(np.append(self.Nk[self.Nk != i], j))
                     if la.det(u._matrix_by_index(self.A, self.M, ind_buf)) != 0:
-                        self.Nk = ind_buf
+                        uk = self._get_uk(j)
+                        self._update_Bk_Nk(i, j, uk)
                         return
             print("Зациклились")
             return
